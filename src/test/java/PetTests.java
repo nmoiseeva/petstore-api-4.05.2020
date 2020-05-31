@@ -1,35 +1,19 @@
-import io.restassured.RestAssured;
-import io.restassured.specification.RequestSpecification;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 
-public class PetTests {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-    private RequestSpecification given (){
-     return RestAssured.
-                given()
-                .contentType("application/json")
-                .log().all()
-                .baseUri("https://petstore.swagger.io/v2")
-                .contentType("application/json");
-
-    }
+public class PetTests extends BaseTest{
 
     @Test
-    public void getPetById(){
-     given()
-                .get(PetEndpoint.GET_PET)
-                .then()
-                .log().all()
-                .statusCode(200);
-
-    }
-
-    @Test
-    public void createPet (){
+    public void test1_CreatePet(){
+        int petId = 1;
        given()
                .body("{\n" +
                        "\"id\":1,\n" +
@@ -49,14 +33,27 @@ public class PetTests {
                        "],\n" +
                        "\"status\":\"available\"\n" +
                        "}")
-                .post(PetEndpoint.CREATE_PET, 1).
+                .post(PetEndpoint.CREATE_PET).
                 then().log().body().
-                body("id", equalTo(1)).
+                body("id", is(petId)).
                 statusCode(200);
     }
 
+
     @Test
-    public void updatePet (){
+    public void test2_GetPetById(){
+        int petId = 1;
+        given()
+                .get(PetEndpoint.GET_PET, petId)
+                .then()
+                .log().all()
+                .body("id", is (petId))
+                .statusCode(200);
+    }
+
+    @Test
+    public void test3_UpdatePet (){
+        int petId = 1;
         given()
                 .body("{\n" +
                         "\"id\":1,\n" +
@@ -76,33 +73,36 @@ public class PetTests {
                         "],\n" +
                         "\"status\":\"available\"\n" +
                         "}")
-                .post("/pet").
+                .post(PetEndpoint.UPDATE_PET).
                 then().log().body().
                 assertThat().
-                body("id", equalTo(1)).
-                body("name", equalTo("Cat")).
+                body("id", is (petId)).
+                body("name", is ("Cat")).
                 statusCode(200);
+        test5_DeletePetById();
     }
 
-    @Test
-    public void deletePetById(){
-        given()
-                .delete("/pet/1")
-                .then()
-                .log().all()
-                .body("message", equalTo("1"))
-                .statusCode(200);
-
-    }
 
     @Test
-    public void getPetById2(){
+    public void test4_GetPetById2(){
         int petId = 666;
        given()
                 .get(PetEndpoint.GET_PET, petId)
                 .then()
                 .log().all()
                 .body("id", anyOf (is (1), is (petId)))
+                .statusCode(200);
+    }
+
+    @Test ()
+    public void test5_DeletePetById (){
+       test1_CreatePet();
+        int petId = 1;
+        given()
+                .delete(PetEndpoint.DELETE_PET, petId)
+                .then()
+                .log().all()
+                .body("message", equalTo("1"))
                 .statusCode(200);
     }
 
