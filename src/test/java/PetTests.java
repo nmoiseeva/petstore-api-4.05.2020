@@ -2,6 +2,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -9,34 +10,33 @@ import static org.hamcrest.Matchers.equalTo;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-public class PetTests extends BaseTest{
+public class PetTests{
+    PetEndpoint petEndpoint = new PetEndpoint();
 
     @Test
-    public void test1_CreatePet(){
-        int petId = 1;
-       given()
-               .body("{\n" +
-                       "\"id\":1,\n" +
-                       "\"category\":{\n" +
-                       "\"id\":1,\n" +
-                       "\"name\":\"CatName\"\n" +
-                       "},\n" +
-                       "\"name\":\"CatName\",\n" +
-                       "\"photoUrls\":[\n" +
-                       "\"string\"\n" +
-                       "],\n" +
-                       "\"tags\":[\n" +
-                       "{\n" +
-                       "\"id\":1,\n" +
-                       "\"name\":\"CatName\"\n" +
-                       "}\n" +
-                       "],\n" +
-                       "\"status\":\"available\"\n" +
-                       "}")
-                .post(PetEndpoint.CREATE_PET).
-                then().log().body().
-                body("id", is(petId)).
-                statusCode(200);
+    public void get(){
+        String body = "{\n" +
+                "\"id\":0,\n" +
+                "\"category\":{\n" +
+                "\"id\":1,\n" +
+                "\"name\":\"Cat\"\n" +
+                "},\n" +
+                "\"name\":\"Cat\",\n" +
+                "\"photoUrls\":[\n" +
+                "\"string\"\n" +
+                "],\n" +
+                "\"tags\":[\n" +
+                "{\n" +
+                "\"id\":1,\n" +
+                "\"name\":\"Cat\"\n" +
+                "}\n" +
+                "],\n" +
+                "\"status\":\"available\"\n" +
+                "}";
+
+        Long petId = petEndpoint.createPet(body);
+        petEndpoint.getPetById(petId);
+        petEndpoint.deletePetById(petId);
     }
 
 
@@ -96,7 +96,6 @@ public class PetTests extends BaseTest{
 
     @Test ()
     public void test5_DeletePetById (){
-       test1_CreatePet();
         int petId = 1;
         given()
                 .delete(PetEndpoint.DELETE_PET, petId)
