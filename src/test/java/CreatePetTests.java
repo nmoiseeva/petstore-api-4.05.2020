@@ -1,15 +1,13 @@
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 
-public class GetPetTests {
-   private PetEndpoint petEndpoint = new PetEndpoint();
-   private Long petId;
+public class CreatePetTests {
+    private PetEndpoint petEndpoint = new PetEndpoint();
+    private Long petId;
 
-
-    @Before
-    public void before (){
+    @Test
+    public void createPet (){
         String body = "{\n" +
                 "\"id\":0,\n" +
                 "\"category\":{\n" +
@@ -31,17 +29,9 @@ public class GetPetTests {
         petId = petEndpoint.createPet(body, "Cat");
     }
 
-
-    @Test
-    public void getPet(){
-        petEndpoint.getPetById(petId);
-    }
-
-
     @After
     public void after(){
         petEndpoint.deletePetById(petId);
     }
-
 
 }

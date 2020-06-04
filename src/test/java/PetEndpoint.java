@@ -4,6 +4,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static org.hamcrest.CoreMatchers.is;
 
+
 public class PetEndpoint {
 
     public static final String CREATE_PET = "/pet";
@@ -30,22 +31,22 @@ public class PetEndpoint {
                 .statusCode(200);
     }
 
-    public Long createPet(String body){
+    public Long createPet(String body, String PetName){
        ValidatableResponse response = given()
                 .body(body)
                 .post(CREATE_PET).
                 then().log().all()
-                //.body("name", is( "cat")) //ToDo fix assert
+                .body("name", is( PetName))
                 .statusCode(200);
        return response.extract().path("id");
     }
 
-    public void updatePet (String body){
-        given()
+    public void updatePet (String body, String PetName){
+        ValidatableResponse response = given()
                 .body(body)
                 .put(UPDATE_PET).
                 then().log().all()
-                //.body("name", is( "cat")) //ToDo fix assert
+                .body("name", is( PetName))
                 .statusCode(200);
     }
 
@@ -54,6 +55,7 @@ public class PetEndpoint {
                 .delete(DELETE_PET, petId)
                 .then()
                 .log().all()
+                .body("type", is ("unknown"))
                 .statusCode(200);
     }
 
