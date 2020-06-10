@@ -1,11 +1,11 @@
 package models;
 
-public class Category {
+public class Tags {
 
-    private Integer id;
+    private int id;
     private String name;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -14,12 +14,14 @@ public class Category {
     }
 
     /**
+     *
      * @param name
      * @param id
      */
-    public Category(Integer id, String name) {
+    public Tags(int id, String name) {
         this.id = id;
         this.name = name;
     }
+
 
 }
