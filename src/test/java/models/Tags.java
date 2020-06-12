@@ -5,6 +5,12 @@ public class Tags {
     private int id;
     private String name;
 
+    public Tags(String name) {
+        this.id = 0;
+        this.name = name;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -13,15 +19,7 @@ public class Tags {
         return name;
     }
 
-    /**
-     *
-     * @param name
-     * @param id
-     */
-    public Tags(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+
 
 
 }

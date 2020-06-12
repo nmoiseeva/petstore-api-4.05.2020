@@ -44,12 +44,12 @@ public class PetEndpoint {
        return response.extract().path("id");
     }
 
-    public void updatePet (String body, String PetName){
+    public void updatePet (Pet pet){
         ValidatableResponse response = given()
-                .body(body)
+                .body(pet)
                 .put(UPDATE_PET).
                 then().log().all()
-                .body("name", is( PetName))
+                .body("name", is( pet.getName()))
                 .statusCode(200);
     }
 
