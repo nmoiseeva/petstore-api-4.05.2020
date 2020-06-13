@@ -14,8 +14,12 @@ public class GetPetTests {
 
     @Before
     public void before (){
-        Pet pet = new Pet(0, "Cat");
-        petId = petEndpoint.createPet(pet);
+       Pet pet = Pet.builder()
+               .id(0)
+               .name("Cat")
+               .status("available")
+               .build();
+       petId = petEndpoint.createPet(pet);
     }
 
 

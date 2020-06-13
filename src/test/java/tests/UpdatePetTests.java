@@ -14,24 +14,26 @@ public class UpdatePetTests {
 
     @Before
     public void before (){
-     //   Pet pet = new Pet(0, "Cat");
         Pet pet = Pet.builder()
                 .id(0)
                 .name("Cat")
-                .status("sold")
+                .status("available")
                 .build();
         petId = petEndpoint.createPet(pet);
     }
 
     @Test
     public void updatePet (){
-      // Pet pet = new Pet(petId,"Cat", "sold");
-      //  petEndpoint.updatePet(pet);
+        Pet pet = Pet.builder()
+                .id(petId)
+                .status("sold")
+                .build();
+        petEndpoint.updatePet(pet);
     }
 
-//    @After
-//    public void after(){
-//        petEndpoint.deletePetById(petId);
-//    }
+    @After
+    public void after(){
+        petEndpoint.deletePetById(petId);
+    }
 
 }
