@@ -1,9 +1,10 @@
 package endpoints;
 
-import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import models.Pet;
+import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.annotations.Step;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -17,14 +18,15 @@ public class PetEndpoint {
 
 
     public RequestSpecification given (){
-        return RestAssured.
-                given()
+        return SerenityRest
+                .given()
                 .contentType("application/json")
                 .log().all()
                 .baseUri("https://petstore.swagger.io/v2")
                 .contentType("application/json");
     }
 
+    @Step
     public void getPetById(Long petId){
         given()
                 .get(GET_PET, petId)
@@ -34,6 +36,7 @@ public class PetEndpoint {
                 .statusCode(200);
     }
 
+    @Step
     public Long createPet(Pet pet){
        ValidatableResponse response = given()
                 .body(pet)
@@ -44,6 +47,7 @@ public class PetEndpoint {
        return response.extract().path("id");
     }
 
+    @Step
     public void updatePet (Pet pet){
         ValidatableResponse response = given()
                 .body(pet)
@@ -53,6 +57,7 @@ public class PetEndpoint {
                 .statusCode(200);
     }
 
+    @Step
     public void deletePetById (Long petId){
         given()
                 .delete(DELETE_PET, petId)

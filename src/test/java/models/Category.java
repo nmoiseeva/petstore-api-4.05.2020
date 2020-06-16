@@ -7,7 +7,8 @@ import lombok.Getter;
 @Builder
 public class Category {
 
-    private long id;
-    private String name;
+    @Builder.Default
+    private long id = 0;
+    private String name = "zoo";
 
 }

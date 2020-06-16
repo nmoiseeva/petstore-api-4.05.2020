@@ -2,10 +2,12 @@ package tests;
 
 import endpoints.PetEndpoint;
 import models.Pet;
+import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-
+@RunWith(SerenityRunner.class)
 public class DeletePet {
     private PetEndpoint petEndpoint = new PetEndpoint();
     private Long petId;

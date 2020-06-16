@@ -7,7 +7,9 @@ import lombok.Getter;
 @Builder
 public class Tags {
 
-    private int id;
-    private String name;
+    @Builder.Default
+    private int id = 0;
+    @Builder.Default
+    private String name = "some tag";
 
 }
