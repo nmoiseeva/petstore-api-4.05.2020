@@ -4,4 +4,5 @@ Run All tests:
 mvn clean verify
 
 View Serenity HTML report:
-mvn serenity:aggregate /target/site/serenity/index.html
+mvn serenity:aggregate 
+/target/site/serenity/index.html
