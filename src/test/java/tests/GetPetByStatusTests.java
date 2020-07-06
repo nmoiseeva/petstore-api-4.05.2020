@@ -1,6 +1,7 @@
 package tests;
 import endpoints.PetEndpoint;
 import models.Pet;
+import models.Status;
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.junit.annotations.TestData;
 import org.junit.After;
@@ -11,24 +12,26 @@ import org.junit.runner.RunWith;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static models.Status.*;
+
 @RunWith(SerenityParameterizedRunner.class)
 public class GetPetByStatusTests {
 
     private PetEndpoint petEndpoint = new PetEndpoint();
     private Long petId;
 
-    private String status;
+    private Status status;
 
-    public GetPetByStatusTests(String status) {
+    public GetPetByStatusTests(Status status) {
         this.status = status;
     }
 
     @TestData
     public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][]{
-                {"available"},
-                {"sold"},
-                {"pending"}
+                {AVAILABLE},
+                {SOLD},
+                {PENDING}
         });
     }
 

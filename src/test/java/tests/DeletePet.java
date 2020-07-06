@@ -2,6 +2,7 @@ package tests;
 
 import endpoints.PetEndpoint;
 import models.Pet;
+import models.Status;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class DeletePet {
         Pet pet = Pet.builder()
                 .id(0)
                 .name("Cat")
-                .status("available")
+                .status(Status.AVAILABLE)
                 .build();
         petId = petEndpoint.createPet(pet);
     }

@@ -3,6 +3,7 @@ package tests;
 import endpoints.PetEndpoint;
 import models.Category;
 import models.Pet;
+import models.Status;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import org.junit.After;
@@ -36,7 +37,7 @@ public class UpdatePetTests {
                         .id(0)
                         .name("test")
                         .build())
-                .status("sold")
+                .status(Status.SOLD)
                 .build();
         petEndpoint.updatePet(pet);
     }

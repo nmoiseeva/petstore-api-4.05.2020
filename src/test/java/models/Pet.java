@@ -3,6 +3,8 @@ package models;
 import lombok.Builder;
 import lombok.Getter;
 
+import static models.Status.*;
+
 
 @Getter
 @Builder
@@ -19,6 +21,6 @@ public class Pet {
     @Builder.Default
     private Tags[] tags = new Tags[] {Tags.builder().build()};
     @Builder.Default
-    private String status = "available";
+    private Status status = AVAILABLE;
 
 }
