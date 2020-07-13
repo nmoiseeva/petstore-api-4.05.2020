@@ -1,9 +1,10 @@
-package models;
+package models.PetModels;
 
 public enum Status {
 
     AVAILABLE,
     PENDING,
-    SOLD;
+    SOLD,
+    SUPER;
 
 }

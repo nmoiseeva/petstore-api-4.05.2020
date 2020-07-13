@@ -5,8 +5,8 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import models.Pet;
-import models.Status;
+import models.PetModels.Pet;
+import models.PetModels.Status;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 
@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 
 
-public class PetEndpoint {
+public class PetEndpoint extends RequestSpecifications{
 
     public static final String CREATE_PET = "/pet";
     public static final String UPDATE_PET = "/pet";
@@ -25,18 +25,6 @@ public class PetEndpoint {
     public static final String GET_PET_BY_STATUS = "/pet/findByStatus";
     public static final String UPLOAD_PET_IMAGE = "/pet/{petId}/uploadImage";
 
-    static {
-        SerenityRest.filters(new RequestLoggingFilter(LogDetail.ALL));
-        SerenityRest.filters(new ResponseLoggingFilter(LogDetail.ALL));
-    }
-
-    public RequestSpecification given (){
-        return SerenityRest
-                .given()
-                .contentType("application/json")
-                .baseUri("https://petstore.swagger.io/v2")
-                .contentType("application/json");
-    }
 
     @Step
     public void getPetById(Long petId){

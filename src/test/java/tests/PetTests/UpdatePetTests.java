@@ -1,9 +1,9 @@
-package tests;
+package tests.PetTests;
 
 import endpoints.PetEndpoint;
-import models.Category;
-import models.Pet;
-import models.Status;
+import models.PetModels.Category;
+import models.PetModels.Pet;
+import models.PetModels.Status;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import org.junit.After;

@@ -1,7 +1,7 @@
-package tests;
+package tests.PetTests;
 import endpoints.PetEndpoint;
-import models.Pet;
-import models.Status;
+import models.PetModels.Pet;
+import models.PetModels.Status;
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.junit.annotations.TestData;
 import org.junit.After;
@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static models.Status.*;
+import static models.PetModels.Status.*;
 
 @RunWith(SerenityParameterizedRunner.class)
 public class GetPetByStatusTests {
