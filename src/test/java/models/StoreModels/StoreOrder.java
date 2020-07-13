@@ -2,6 +2,8 @@ package models.StoreModels;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.Instant;
+
 import static models.StoreModels.Status.placed;
 
 
@@ -9,19 +11,14 @@ import static models.StoreModels.Status.placed;
 @Builder
 public class StoreOrder {
 
-//    { \"id\": 0, " +
-//            "\"petId\": 0, " +
-//            "\"quantity\": 0, " +
-//            "\"shipDate\": \"2020-07-07T12:23:20.360Z\", " +
-//            "\"status\": \"placed\", " +
-//            "\"complete\": true}
-
     @Builder.Default
     private int id;
     @Builder.Default
     private long petId;
     @Builder.Default
     private long quantity = 0;
+    @Builder.Default
+    private String shipDate = Instant.now().toString();
     @Builder.Default
     private Status status = placed;
     @Builder.Default

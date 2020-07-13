@@ -36,7 +36,7 @@ public class GetStatusAllPeatFromStoreTests {
 
     @Test
     public void updateStoreOrder(){
-        storeEndpoint.getStatusAllPetFromStore();
+        storeEndpoint.getStatusAllPetFromStore(Status.SUPER,1);
     }
 
 }

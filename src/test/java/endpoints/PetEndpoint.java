@@ -12,8 +12,8 @@ import net.thucydides.core.annotations.Step;
 
 import java.io.File;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.hasProperty;
 
 
 public class PetEndpoint extends RequestSpecifications{
@@ -41,7 +41,9 @@ public class PetEndpoint extends RequestSpecifications{
                 .param("status", status)
                 .get(GET_PET_BY_STATUS)
                 .then()
-                .body("[0].status", is (status.toString())) //ToDo verify each status in array
+               // .body("[0].status", is (status.toString())) //ToDo verify each status in array
+                .body("status", everyItem( is (status.toString())))
+               // .body("findAll {it -> it.status == '%s'}", status.toString())
                 .statusCode(200);
     }
 
