@@ -1,4 +1,4 @@
-package tests.SoreTests;
+package tests.StoreTests;
 
 import endpoints.PetEndpoint;
 import endpoints.StoreEndpoint;
