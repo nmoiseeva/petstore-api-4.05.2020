@@ -1,6 +1,7 @@
 package tests.PetTests;
 
 import endpoints.PetEndpoint;
+import lombok.extern.slf4j.Slf4j;
 import models.PetModels.Category;
 import models.PetModels.Pet;
 import models.PetModels.Status;
@@ -11,8 +12,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+
+@Slf4j
 @RunWith(SerenityRunner.class)
 public class UpdatePetTests {
+
+
     @Steps
     private PetEndpoint petEndpoint;
     private Long petId;
@@ -40,6 +45,7 @@ public class UpdatePetTests {
                 .status(Status.SOLD)
                 .build();
         petEndpoint.updatePet(pet);
+        log.info(String.format("Created Pet with id = %s", petId));
     }
 
     @After

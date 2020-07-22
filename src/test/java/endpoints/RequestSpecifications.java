@@ -6,6 +6,8 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
 
+import static config.ConfigProperties.BASE_URL;
+
 public class RequestSpecifications {
 
     static {
@@ -17,6 +19,6 @@ public class RequestSpecifications {
         return SerenityRest
                 .given()
                 .contentType("application/json")
-                .baseUri("https://petstore.swagger.io/v2");
+                .baseUri(BASE_URL);
     }
 }

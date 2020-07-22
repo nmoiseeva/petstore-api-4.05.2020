@@ -1,22 +1,17 @@
 package endpoints;
 
-import io.restassured.filter.log.LogDetail;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
 import models.PetModels.Pet;
 import models.PetModels.Status;
-import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 
 import java.io.File;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.hasProperty;
 
 
 public class PetEndpoint extends RequestSpecifications{
+
 
     public static final String CREATE_PET = "/pet";
     public static final String UPDATE_PET = "/pet";
